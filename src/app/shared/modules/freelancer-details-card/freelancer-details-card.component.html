@@ -1,0 +1,49 @@
+<mat-card class="card-container">
+    <div class="row">
+        <div class="col-3">
+            <strong>Email</strong>
+        </div>
+        <div class="col-9">
+            :{{data?.email}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <strong> Username</strong>
+        </div>
+        <div class="col-9">
+            :{{data?.username}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <strong> Hobby</strong>
+        </div>
+        <div class="col-9">
+            :{{data?.hobby}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <strong> Phone number</strong>
+        </div>
+        <div class="col-9">
+            :{{data?.phoneNumber}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <strong> Skillsets</strong>
+        </div>
+        <div class="col-9">
+            :{{data?.skillSets}}
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-12 text-center">
+            <button mat-raised-button color="primary" (click)="onEdit()" class="edit-btn">Edit</button>
+            <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
+        </div>
+    </div>
+
+</mat-card>

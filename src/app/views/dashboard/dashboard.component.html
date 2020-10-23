@@ -1,0 +1,58 @@
+<div class="body-container">
+    <button mat-button (click)="navigateToRegistration()">
+        <mat-icon>arrow_back</mat-icon>
+        Go to registration
+    </button>
+    <h1 class="title">
+        Freelancer list
+    </h1>
+
+    <div class="row">
+        <div class="col-12 text-right">
+
+            <form class="example-form" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Search by name</mat-label>
+                    <input matInput formControlName="search">
+                    <button mat-button *ngIf="searchForm.controls.search.value" matSuffix mat-icon-button
+                        aria-label="Clear" (click)="clearSearchInput()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+                <button mat-raised-button color="primary" [disabled]="!searchForm.valid" mat-button type="submit"
+                    color="primary">Search</button>
+
+            </form>
+        </div>
+
+    </div>
+    <div *ngIf="onSearch">
+        <div class="row">
+            <div class="col-12 text-center">
+
+                <button mat-raised-button color="primary" (click)="onSearch = false" mat-button type="submit"
+                    color="primary">Close</button>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-4">
+                <app-freelancer-details-card *ngIf="(searchedUser$ | async)?.userList"
+                    [data]="(searchedUser$ | async)?.userList"></app-freelancer-details-card>
+
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!onSearch">
+        <div *ngIf='loading$ | async' align="center">
+            <mat-spinner></mat-spinner>
+        </div>
+        <div *ngIf="!(loading$ | async)" class="row ">
+            <div class="col-4 card-col" *ngFor="let item of (freelancerList$ | async)">
+                <app-freelancer-details-card [data]="item"></app-freelancer-details-card>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="container">
+
+    <div align="center">
+
+        <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+
+            <mat-card class="card-container">
+                <div align="left">
+                    <h3 class="title">
+                        Update 
+                    </h3>
+                </div>
+                <div>
+                    <mat-form-field class="example-form-field">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="text" formControlName="email">
+
+                        <mat-error *ngIf="updateForm.controls.email.errors?.required">
+                            Email is <strong>required</strong>
+                        </mat-error>
+                        <mat-error *ngIf="updateForm.controls.email.errors?.email">
+                            Please enter a valid email address
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="example-form-field">
+                        <mat-label>Username</mat-label>
+                        <input matInput type="text" formControlName="username">
+
+                        <mat-error *ngIf="updateForm.controls.username.errors?.required">
+                            Username is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="example-form-field">
+                        <mat-label>Phone number</mat-label>
+                        <input matInput type="text" formControlName="phoneNumber">
+                        <mat-error *ngIf="updateForm.controls.phoneNumber.errors?.required">
+                            Phone number is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="example-form-field">
+                        <mat-label>Hobby</mat-label>
+                        <input matInput type="text" formControlName="hobby">
+                        <mat-error *ngIf="updateForm.controls.hobby.errors?.required">
+                            Hobby is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field class="example-form-field">
+                        <mat-label>Skillsets</mat-label>
+                        <mat-select formControlName="skillsets" multiple>
+                            <mat-option *ngFor="let skillset of skillSets" [value]="skillset">{{skillset}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+              
+                <div *ngIf="isLoading">
+                    <mat-spinner diameter=40></mat-spinner>
+                </div>
+
+                <button mat-raised-button color="primary" [disabled]="!updateForm.valid" *ngIf="!isLoading" mat-button
+                    type="submit" color="primary">Update</button>
+            
+            </mat-card>
+           
+        </form>
+
+    </div>
+
+</div>
